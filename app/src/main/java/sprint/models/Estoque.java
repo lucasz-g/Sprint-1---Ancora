@@ -34,7 +34,7 @@ public class Estoque {
                     }
                     System.out.println("Produtos em Estoque: ");
                     for (Produto produto : produtosEmEstoque) {
-                        System.out.println("Nome do Produto: " + produto.getNome());
+                        produto.exibirInfo();
                     }
 
                 } else {

@@ -45,6 +45,4 @@ public class ProdutoJson {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    
 }

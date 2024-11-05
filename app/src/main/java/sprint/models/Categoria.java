@@ -12,8 +12,4 @@ public class Categoria {
         return nomeCategoria;
     }
 
-    public void setNomeCategoria() {
-        this.nomeCategoria = nomeCategoria;
-    }
-
 }

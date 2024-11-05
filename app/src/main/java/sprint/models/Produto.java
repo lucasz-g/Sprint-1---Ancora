@@ -11,6 +11,7 @@ public class Produto {
    public Produto(int id, String nome, double preco, String descricao, String categoria){
        this.nome = nome;
        this.preco = preco;
+       this.descricao = descricao;
        this.categoria = new Categoria(categoria);
    }
 
