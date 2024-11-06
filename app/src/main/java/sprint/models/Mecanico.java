@@ -19,13 +19,29 @@ public class Mecanico {
     }
 
     public void buscarProdutos(Estoque estoque){
-        estoque.enderecoEstoque();
         estoque.listarProdutos();
     }
 
-    public void filtrarProdutos(Estoque estoque, String criterio){
+    public void buscarProdutos(Estoque estoque, String criterio){
         estoque.listarProdutos();
-        //Lógica de filtro
+        if(estoque.getProdutosEmEstoque() != null && !estoque.getProdutosEmEstoque().isEmpty()){
+            boolean encontrado = false;
+            for (Produto produto : estoque.getProdutosEmEstoque()) {
+                if (produto.getNome().equals(criterio) || produto.getCategoria().getNomeCategoria().equals(criterio)) {
+                    System.out.println("Produto encontrado");
+                    System.out.println("Nome: " + produto.getNome());
+                    System.out.println("Categoria: " + produto.getCategoria().getNomeCategoria());
+                    encontrado = true;
+                }
+            }
+            
+            if(!encontrado){
+                System.out.println("Produto não encontrado");
+            }
+
+        }else{
+            System.out.println("Não há produtos em estoque");
+        }
     }
 
     // Getters e Setters

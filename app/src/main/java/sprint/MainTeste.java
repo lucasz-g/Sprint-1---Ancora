@@ -9,7 +9,7 @@ import sprint.models.Endereco;
 import sprint.models.Estoque;
 import sprint.models.Mecanico;
 
-public class Teste {
+public class MainTeste {
     
     public static void main(String[] args) {
         Endereco endereco = new Endereco("Av Paulista", "Sao Paulo", "Sao Paulo", "000999");

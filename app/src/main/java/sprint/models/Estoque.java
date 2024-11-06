@@ -26,12 +26,14 @@ public class Estoque {
             public void onResponse(Call<List<ProdutoJson>> call, Response<List<ProdutoJson>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<ProdutoJson> listaDeJson = response.body();
-            
                     for (ProdutoJson produtoJson : listaDeJson) {
                         Produto produto = new Produto(produtoJson.getId(), produtoJson.getTitle(), produtoJson.getPrice(), produtoJson.getDescription(), produtoJson.getCategory());
                         produtosEmEstoque.add(produto);
                     }
+                    //Printa o endereço
+                    enderecoEstoque();
                     System.out.println("Produtos em Estoque: ");
+                    
                     for (Produto produto : produtosEmEstoque) {
                         produto.exibirInfo();
                     }
