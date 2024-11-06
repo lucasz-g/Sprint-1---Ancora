@@ -23,7 +23,7 @@ public class Mecanico {
         estoque.listarProdutos();
     }
 
-    public void filtrarProdutos(Estoque estoque){
+    public void filtrarProdutos(Estoque estoque, String criterio){
         estoque.listarProdutos();
         //Lógica de filtro
     }
