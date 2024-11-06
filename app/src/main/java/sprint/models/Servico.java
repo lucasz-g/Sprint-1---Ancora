@@ -11,6 +11,7 @@ public class Servico {
         this.preco = preco;
     }
 
+    //Getters e Setters
     public String getNome() {
         return nome;
     }

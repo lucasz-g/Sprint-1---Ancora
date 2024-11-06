@@ -7,7 +7,6 @@ import retrofit2.Response;
 import sprint.services.ProdutoService;
 
 public class Estoque {
-    private int produtoId;
     private Endereco endereco;
     private List<Produto> produtosEmEstoque;
     private Admin gerente;
@@ -49,10 +48,6 @@ public class Estoque {
         });
     }
 
-    public void adicionarProduto(Produto produto){
-        produtosEmEstoque.add(produto);
-    }
-
     public void enderecoEstoque(){
         System.out.println("Endereço do estoque: ");
         System.out.println(endereco.getEnderecoCompleto());
@@ -65,14 +60,6 @@ public class Estoque {
 
     public void setGerente(Admin gerente) {
         this.gerente = gerente;
-    }
-
-    public int getProdutoId() {
-        return produtoId;
-    }
-
-    public void setProdutoId(int produtoId) {
-        this.produtoId = produtoId;
     }
 
     public Endereco getEndereco() {

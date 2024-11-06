@@ -53,6 +53,7 @@ public class Departamento {
         }
     }
 
+    // Getters e Setters
     public void exibirInfo(){
         System.out.println("Departamento: " + nomeDepartamento);
         System.out.println("Descrição: " + descricao);
@@ -60,7 +61,6 @@ public class Departamento {
         listarServicos();
     }
 
-    // Getters e Setters
     public Admin getGerente() {
         return gerente;
     }

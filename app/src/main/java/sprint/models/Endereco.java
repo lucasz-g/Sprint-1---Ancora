@@ -14,6 +14,7 @@ public class Endereco {
         this.cep = cep;
     }
 
+    //Getters e Setters
     public String getEnderecoCompleto(){
         return (rua + ", " + cidade + ", " + estado + " - " + cep);
     }

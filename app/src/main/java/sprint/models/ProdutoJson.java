@@ -15,6 +15,7 @@ public class ProdutoJson {
         this.category = category;
     }
     
+    //Getters e Setters
     public int getId() {
         return id;
     }

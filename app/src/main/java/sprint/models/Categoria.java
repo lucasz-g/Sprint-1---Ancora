@@ -4,6 +4,7 @@ public class Categoria {
 
     private String nomeCategoria;
 
+    // Getters e Setters
     public Categoria(String nomeCategoria){
         this.nomeCategoria = nomeCategoria;
     }

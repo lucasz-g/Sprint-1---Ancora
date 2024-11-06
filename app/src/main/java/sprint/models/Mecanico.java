@@ -23,7 +23,12 @@ public class Mecanico {
         estoque.listarProdutos();
     }
 
+    public void filtrarProdutos(Estoque estoque){
+        estoque.listarProdutos();
+        //Lógica de filtro
+    }
 
+    // Getters e Setters
     public void exibirInfo(){
         System.out.println("Id: " + idMecanico);
         System.out.println("Nome: " + nome);
@@ -32,7 +37,6 @@ public class Mecanico {
         System.out.println("Departamento: " + departamento.getNomeDepartamento());
     }
 
-    // Getters e Setters...
     public int getId() {
         return idMecanico;
     }

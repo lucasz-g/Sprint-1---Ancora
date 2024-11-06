@@ -15,6 +15,7 @@ public class Produto {
        this.categoria = new Categoria(categoria);
    }
 
+   //Getters e Setters
    public void exibirInfo(){
         System.out.println("Nome: " + nome);
         System.out.println("Preco: " + preco);

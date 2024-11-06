@@ -56,6 +56,7 @@ public class Admin {
         }
     }
 
+    //Getters e Setters
     public void exibirInfo(){
         System.out.println("Administrador: " + nome);
         System.out.println("Contato: " + contato);
@@ -65,7 +66,6 @@ public class Admin {
 
     }
 
-    //Getters e Setters
     public String getNome() {
         return nome;
     }
