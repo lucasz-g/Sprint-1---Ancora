@@ -24,6 +24,6 @@ public class MainTeste {
         departamento.adicionarServico("Manutenção", 200);
         departamento.listarServicos();
 
-        mecanico.buscarProdutos(estoque);
+        mecanico.buscarProduto(estoque, "Casaco");
     }
 }

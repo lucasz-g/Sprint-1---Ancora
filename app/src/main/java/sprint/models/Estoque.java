@@ -8,14 +8,22 @@ import sprint.services.ProdutoService;
 
 public class Estoque {
     private Endereco endereco;
-    private List<Produto> produtosEmEstoque;
     private Admin gerente;
     private final ProdutoService produtoService;
+
+    //Dynamic Programming
+    private List<Produto> produtosEmEstoque; // Listar produtos disponiveis
+    private Map<String, Produto> produtosPorNome; // Busca por nome
+    private List<Produto> produtosOrdenadosPorPreco; // Cotação de preço
+    private Queue<Produto> carrinhoDeCompras; // Processo de compra
 
     public Estoque(Endereco endereco, Admin gerente) {
         this.gerente = gerente;
         this.endereco = endereco;
         this.produtosEmEstoque = new ArrayList<>();
+        this.produtosPorNome = new HashMap<>();
+        this.produtosOrdenadosPorPreco = new ArrayList<>();
+        this.carrinhoDeCompras = new LinkedList<>();
         gerente.setEstoque(this);
         this.produtoService = new ProdutoService();
     }
@@ -29,11 +37,13 @@ public class Estoque {
                     for (ProdutoJson produtoJson : listaDeJson) {
                         Produto produto = new Produto(produtoJson.getId(), produtoJson.getTitle(), produtoJson.getPrice(), produtoJson.getDescription(), produtoJson.getCategory());
                         produtosEmEstoque.add(produto);
+                        produtosPorNome.put(produto.getNome(), produto);
                     }
-                    //Printa o endereço
+
+                    atualizarProdutosOrdenadosPorPreco();
+
                     enderecoEstoque();
                     System.out.println("Produtos em Estoque: ");
-                    
                     for (Produto produto : produtosEmEstoque) {
                         produto.exibirInfo();
                     }
@@ -50,7 +60,42 @@ public class Estoque {
         });
     }
 
+    private void atualizarProdutosOrdenadosPorPreco() {
+        produtosOrdenadosPorPreco = new ArrayList<>(produtosEmEstoque);
+        produtosOrdenadosPorPreco.sort(Comparator.comparing(Produto::getPreco));
+    }
+
+    public Produto buscarProdutoPorNome(String nome) {
+        return produtosPorNome.get(nome);
+    }
+
+    public void exibirProdutosOrdenadosPorPreco() {
+        System.out.println("Produtos ordenados por preço:");
+        for (Produto produto : produtosOrdenadosPorPreco) {
+            produto.exibirInfo();
+        }
+    }
+
+    public void adicionarAoCarrinho(Produto produto) {
+        carrinhoDeCompras.add(produto);
+        System.out.println("Produto adicionado ao carrinho: " + produto.getNome());
+    }
+
+    public void processarCompra() {
+        System.out.println("Processando compra...");
+        while (!carrinhoDeCompras.isEmpty()) {
+            Produto produto = carrinhoDeCompras.poll();
+            if (produtosEmEstoque.contains(produto)) {
+                produtosEmEstoque.remove(produto);
+                System.out.println("Comprando: " + produto.getNome());
+            }else{
+                System.out.println("Produto não encontrado em estoque: " + produto.getNome());
+            }
+        }
+    }
+
     public void enderecoEstoque(){
+        
         System.out.println("Endereço do estoque: ");
         System.out.println(endereco.getEnderecoCompleto());
     }
@@ -78,5 +123,6 @@ public class Estoque {
 
     public void setProdutosEmEstoque(List<Produto> produtosEmEstoque) {
         this.produtosEmEstoque = produtosEmEstoque;
+        atualizarProdutosOrdenadosPorPreco(); // Atualiza lista de produtos ordenados ao modificar o estoque
     }
 }

@@ -156,13 +156,20 @@ Essa classe permite ao administrador interagir com os mecânicos e seu departame
 
 ### 5. Classe Estoque
 
-**Responsabilidade**: Representa o estoque de produtos em uma loja de autopeças. Gerencia a lista de produtos, o endereço do estoque, e a interação com o administrador (gerente). Também realiza a busca e listagem dos produtos utilizando um serviço externo.
+Aqui está o resumo da classe `Estoque` atualizado com os métodos e atributos relacionados às estruturas de dados que implementamos:
+
+### 5. Classe Estoque
+
+**Responsabilidade**: Representa o estoque de produtos em uma loja de autopeças. Gerencia a lista de produtos, o endereço do estoque, e a interação com o administrador (gerente). Também realiza a busca e listagem dos produtos utilizando um serviço externo, além de implementar funcionalidades de busca, cotação de preços, e processo de compra utilizando diferentes estruturas de dados.
 
 **Atributos**:
 - `endereco`: Endereço onde o estoque está localizado (instância da classe `Endereco`).
 - `produtosEmEstoque`: Lista de produtos presentes no estoque (lista de instâncias de `Produto`).
 - `gerente`: Administrador responsável pelo estoque (instância da classe `Admin`).
 - `produtoService`: Serviço responsável por buscar produtos de uma fonte externa (instância da classe `ProdutoService`).
+- `produtosPorNome`: Mapa para busca de produtos por nome. Usa o nome do produto como chave e o próprio produto como valor (`Map<String, Produto>`).
+- `produtosOrdenadosPorPreco`: Lista de produtos ordenados por preço, usada para exibição dos produtos mais baratos ou caros (`List<Produto>`).
+- `carrinhoDeCompras`: Fila de produtos adicionados ao carrinho para o processo de compra (`Queue<Produto>`).
 
 **Construtor**:
 - **`Estoque(Endereco endereco, Admin gerente)`**: Inicializa o estoque com um endereço e um gerente. O estoque é associado ao gerente, e o serviço de produtos é instanciado.
@@ -172,8 +179,24 @@ Essa classe permite ao administrador interagir com os mecânicos e seu departame
   
 - **`enderecoEstoque()`**: Exibe o endereço completo do estoque, utilizando o método `getEnderecoCompleto()` da classe `Endereco`.
 
+- **`atualizarProdutosOrdenadosPorPreco()`**: Atualiza a lista de produtos ordenados por preço, criando uma nova lista com os produtos em estoque e ordenando-os pelo preço (`O(n log n)` de complexidade). A lista `produtosOrdenadosPorPreco` é ordenada de acordo com o preço dos produtos utilizando `Comparator.comparing(Produto::getPreco)`.
 
-Essa classe gerencia o estoque de produtos e realiza a integração com uma API externa para buscar e exibir os produtos em estoque. A associação com o `Admin` permite que o gerente tenha controle sobre o estoque.
+- **`buscarProdutoPorNome(String nome)`**: Retorna o produto associado ao nome fornecido, utilizando o mapa `produtosPorNome`. A busca no mapa é realizada em **O(1)**, já que a chave (nome) permite acesso direto ao valor (produto).
+
+- **`exibirProdutosOrdenadosPorPreco()`**: Exibe todos os produtos ordenados por preço. A exibição segue a ordem crescente de preços, utilizando a lista `produtosOrdenadosPorPreco`.
+
+- **`adicionarAoCarrinho(Produto produto)`**: Adiciona o produto ao carrinho de compras (representado por uma fila `carrinhoDeCompras`). A adição à fila é realizada em **O(1)**, pois as operações de inserção e remoção em uma fila são eficientes.
+
+- **`processarCompra()`**: Processa a compra, removendo os produtos do carrinho e do estoque. Para cada produto no carrinho, é verificado se ele está presente no estoque. Se o produto for encontrado, ele é removido do estoque e comprado. Esse processo envolve a remoção de produtos da lista `produtosEmEstoque` e é realizado em **O(n)** no pior caso, onde `n` é o número de produtos no estoque, já que o método `contains()` da lista percorre os elementos da lista.
+
+---
+
+**Justificativa das Estruturas de Dados**:
+- **`Map<String, Produto>` (produtosPorNome)**: Um mapa foi escolhido para a busca de produtos por nome, pois a pesquisa no mapa é muito eficiente com complexidade de **O(1)** no pior caso, já que ele permite acesso direto ao produto usando o nome como chave.
+- **`List<Produto>` (produtosOrdenadosPorPreco)**: Uma lista foi escolhida para armazenar os produtos ordenados por preço. Embora a ordenação tenha uma complexidade de **O(n log n)**, ela permite uma exibição fácil e rápida dos produtos ordenados. A ordenação da lista é feita sempre que o estoque é atualizado.
+- **`Queue<Produto>` (carrinhoDeCompras)**: Uma fila foi escolhida para o carrinho de compras, já que o processo de compra segue a ordem em que os produtos são adicionados. As operações de adição (`add()`) e remoção (`poll()`) em uma fila são realizadas em **O(1)**, tornando a estrutura eficiente para esse tipo de processo.
+
+Essa implementação permite que o estoque de produtos seja gerenciado de forma eficiente, com métodos otimizados para busca, ordenação, e processamento de compras, utilizando as melhores estruturas de dados para cada funcionalidade.
 
 ---
 
@@ -340,7 +363,12 @@ Retrofit é uma biblioteca desenvolvida pelo Square que simplifica a comunicaç�
 ## Diagrama UML de Classes
 
 ### Diagrama
-![image](https://hackmd.io/_uploads/r1YxsrYbJl.png)
+![image](./Diagrama_Classes.png)
+
+### Legenda
+▢ -> Modificador Privado
+
+○ -> Modificador Público
 
 
 ### Observações

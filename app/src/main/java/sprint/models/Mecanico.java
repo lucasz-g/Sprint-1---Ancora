@@ -18,30 +18,12 @@ public class Mecanico {
         this.endereco = endereco;
     }
 
-    public void buscarProdutos(Estoque estoque){
+    public void exibirProdutos(Estoque estoque){
         estoque.listarProdutos();
     }
 
-    public void buscarProdutos(Estoque estoque, String criterio){
-        estoque.listarProdutos();
-        if(estoque.getProdutosEmEstoque() != null && !estoque.getProdutosEmEstoque().isEmpty()){
-            boolean encontrado = false;
-            for (Produto produto : estoque.getProdutosEmEstoque()) {
-                if (produto.getNome().equals(criterio) || produto.getCategoria().getNomeCategoria().equals(criterio)) {
-                    System.out.println("Produto encontrado");
-                    System.out.println("Nome: " + produto.getNome());
-                    System.out.println("Categoria: " + produto.getCategoria().getNomeCategoria());
-                    encontrado = true;
-                }
-            }
-            
-            if(!encontrado){
-                System.out.println("Produto não encontrado");
-            }
-
-        }else{
-            System.out.println("Não há produtos em estoque");
-        }
+    public void buscarProduto(Estoque estoque, String nome){
+        estoque.buscarProdutoPorNome(nome);
     }
 
     // Getters e Setters
