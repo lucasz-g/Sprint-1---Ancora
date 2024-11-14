@@ -104,7 +104,6 @@ Essa classe é útil para a conversão de dados JSON em objetos da aplicação. 
 **Responsabilidade**: Representa um mecânico que trabalha na rede de autopeças, com funcionalidades para buscar produtos no estoque e exibir suas próprias informações.
 
 **Atributos**:
-- `id`: Identificador estático único para incrementar o `idMecanico`.
 - `idMecanico`: Identificador único do mecânico.
 - `nome`: Nome do mecânico.
 - `contato`: Informações de contato do mecânico.
@@ -131,6 +130,7 @@ Essa classe permite ao mecânico buscar produtos no estoque por nome ou categori
 **Responsabilidade**: Representa um administrador responsável por gerenciar os mecânicos, suas informações e o estoque da loja de autopeças.
 
 **Atributos**:
+- `idAdministrador`: Identificador único do administrador.
 - `nome`: Nome do administrador.
 - `contato`: Informações de contato do administrador.
 - `endereco`: Endereço do administrador (instância da classe `Endereco`).
@@ -156,13 +156,10 @@ Essa classe permite ao administrador interagir com os mecânicos e seu departame
 
 ### 5. Classe Estoque
 
-Aqui está o resumo da classe `Estoque` atualizado com os métodos e atributos relacionados às estruturas de dados que implementamos:
-
-### 5. Classe Estoque
-
 **Responsabilidade**: Representa o estoque de produtos em uma loja de autopeças. Gerencia a lista de produtos, o endereço do estoque, e a interação com o administrador (gerente). Também realiza a busca e listagem dos produtos utilizando um serviço externo, além de implementar funcionalidades de busca, cotação de preços, e processo de compra utilizando diferentes estruturas de dados.
 
 **Atributos**:
+- `idEstoque` : Identificador único do estoque.
 - `endereco`: Endereço onde o estoque está localizado (instância da classe `Endereco`).
 - `produtosEmEstoque`: Lista de produtos presentes no estoque (lista de instâncias de `Produto`).
 - `gerente`: Administrador responsável pelo estoque (instância da classe `Admin`).
@@ -205,6 +202,7 @@ Essa implementação permite que o estoque de produtos seja gerenciado de forma 
 **Responsabilidade**: Representa a categoria de um produto, ajudando a organizar os produtos no estoque de acordo com suas classificações.
 
 **Atributos**:
+- `idCategoria`: Identificador único da categoria à qual o produto pertence.
 - `nomeCategoria`: Nome da categoria à qual o produto pertence.
 
 **Construtor**:
@@ -225,6 +223,7 @@ A classe `Categoria` é uma simples estrutura para armazenar o nome de uma categ
 **Responsabilidade**: Representa o endereço completo de um local, utilizado em várias partes do sistema, como no `Estoque`, para indicar onde o estoque está localizado.
 
 **Atributos**:
+- `idEndereco`: Identificador único do endereço.
 - `rua`: Nome da rua ou logradouro.
 - `cidade`: Nome da cidade.
 - `estado`: Nome do estado.
@@ -245,6 +244,7 @@ A classe `Endereco` é uma forma simples de armazenar e formatar os dados de end
 **Responsabilidade**: Representa um departamento dentro de uma organização, com a responsabilidade de gerenciar os mecânicos, serviços oferecidos e o gerente responsável.
 
 **Atributos**:
+- `idDepartamento`: Identificador único do departamento.
 - `nomeDepartamento`: Nome do departamento.
 - `descricao`: Descrição sobre o departamento.
 - `mecanicos`: Lista de mecânicos que pertencem ao departamento.
@@ -270,6 +270,7 @@ A classe `Departamento` é fundamental para a organização de mecânicos e serv
 **Responsabilidade**: Representa um serviço oferecido por um departamento, com informações sobre o nome, preço e o departamento responsável.
 
 **Atributos**:
+- `idServico`: Identificador único do serviço oferecido.
 - `nome`: Nome do serviço oferecido.
 - `preco`: Preço do serviço.
 - `departamento`: O departamento ao qual o serviço pertence.
