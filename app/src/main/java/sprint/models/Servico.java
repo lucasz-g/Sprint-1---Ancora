@@ -1,12 +1,14 @@
 package sprint.models;
 
 public class Servico {
-    
+    private static int id = 0;
+    private int idServico;
     private String nome;
     private double preco;
     private Departamento departamento;
 
     Servico(String nome, double preco) {
+        idServico = ++ id;
         this.nome = nome;
         this.preco = preco;
     }
@@ -39,4 +41,13 @@ public class Servico {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Servico.id = id;
+    }
+
 }

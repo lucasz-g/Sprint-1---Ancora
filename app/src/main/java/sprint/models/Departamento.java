@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Departamento {
+    private static int id = 0;
+    private int idDepartamento;
     private String nomeDepartamento;
     private String descricao;
     private List<Mecanico> mecanicos;
@@ -11,6 +13,7 @@ public class Departamento {
     private List<Servico> servicos;
 
     public Departamento(String nomeDepartamento, String descricao, Admin gerente) {
+        idDepartamento = ++ id;
         this.nomeDepartamento = nomeDepartamento;
         this.descricao = descricao;
         this.gerente = gerente;
@@ -87,6 +90,14 @@ public class Departamento {
 
     public void setMecanicos(List<Mecanico> mecanicos) {
         this.mecanicos = mecanicos;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Departamento.id = id;
     }
 
 }

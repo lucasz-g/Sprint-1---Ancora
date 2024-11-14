@@ -1,6 +1,8 @@
 package sprint.models;
 
 public class Admin {
+    private static int id = 0;
+    private int idAdmin;
     private String nome;
     private String contato;
     private Endereco endereco;
@@ -8,6 +10,7 @@ public class Admin {
     private Estoque estoque;
 
     public Admin(String nome, String contato, Endereco endereco) {
+        idAdmin = ++ id;
         this.nome = nome;
         this.contato = contato;
         this.endereco = endereco;
@@ -104,6 +107,14 @@ public class Admin {
 
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Admin.id = id;
     }
 
 }

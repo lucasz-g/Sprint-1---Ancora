@@ -7,6 +7,8 @@ import retrofit2.Response;
 import sprint.services.ProdutoService;
 
 public class Estoque {
+    private static int id = 0;
+    private int idEstoque;
     private Endereco endereco;
     private Admin gerente;
     private final ProdutoService produtoService;
@@ -18,6 +20,7 @@ public class Estoque {
     private Queue<Produto> carrinhoDeCompras; // Processo de compra
 
     public Estoque(Endereco endereco, Admin gerente) {
+        idEstoque = ++ id;
         this.gerente = gerente;
         this.endereco = endereco;
         this.produtosEmEstoque = new ArrayList<>();
@@ -123,6 +126,14 @@ public class Estoque {
 
     public void setProdutosEmEstoque(List<Produto> produtosEmEstoque) {
         this.produtosEmEstoque = produtosEmEstoque;
-        atualizarProdutosOrdenadosPorPreco(); // Atualiza lista de produtos ordenados ao modificar o estoque
+        atualizarProdutosOrdenadosPorPreco(); 
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Estoque.id = id;
     }
 }

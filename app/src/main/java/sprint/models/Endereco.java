@@ -1,13 +1,15 @@
 package sprint.models;
 
 public class Endereco {
-
+    private static int id = 0;
+    private int idEndereco;
     private String rua;
     private String cidade;
     private String estado;
     private String cep;
 
     public Endereco(String rua, String cidade, String estado, String cep) {
+        idEndereco = ++id;
         this.rua = rua;
         this.cidade = cidade;
         this.estado = estado;
